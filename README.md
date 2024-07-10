@@ -9,7 +9,6 @@ This Flask application fetches random memes from Reddit's r/memes subreddit and 
 - Fetches random memes from Reddit using the Reddit API.
 - Displays each meme with its title and a link to the original Reddit post.
 - Dynamically updates a countdown for displaying a new meme every 30 seconds.
-- Includes a flipping counter that increments with each new meme viewed.
 
 ## Technologies Used
 
