@@ -1,5 +1,5 @@
 # Reddit Meme Viewer with Flask
-This Flask application fetches random memes from Reddit's r/memes subreddit and displays them with a dynamic countdown and a flipping counter for memes viewed.
+This Flask application fetches random memes from Reddit's r/memes subreddit and displays them with a dynamic countdown.
 
 ## Features
 
