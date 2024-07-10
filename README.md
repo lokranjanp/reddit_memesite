@@ -1,7 +1,4 @@
----
-
 # Reddit Meme Viewer with Flask
-
 This Flask application fetches random memes from Reddit's r/memes subreddit and displays them with a dynamic countdown and a flipping counter for memes viewed.
 
 ## Features
@@ -16,12 +13,12 @@ This Flask application fetches random memes from Reddit's r/memes subreddit and 
 - Flask
 - PRAW (Python Reddit API Wrapper)
 - HTML/CSS
-- JavaScript (FlipClock.js for flipping counter)
 
 ## Prerequisites
 
-- Python 3.x installed
+- Python 3.11 installed
 - GitHub account (optional, for deployment)
+- Flask
 
 ## Installation
 
@@ -64,15 +61,9 @@ This Flask application fetches random memes from Reddit's r/memes subreddit and 
 
 ## Deployment
 
-This application can be deployed to platforms like Heroku for public access. Ensure to set up environment variables on your deployment platform as described in the Prerequisites section.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Will deploy soon
 
 ## Acknowledgements
 
 - Reddit API for providing access to memes from r/memes.
-- FlipClock.js for the flipping counter implementation.
-
 ---
