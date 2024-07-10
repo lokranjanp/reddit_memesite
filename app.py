@@ -5,12 +5,10 @@ import os
 
 app = Flask(__name__)
 
-# Reddit API credentials
 client_id = os.getenv('CLIENT_ID')
 client_secret = os.getenv('CLIENT_SECRET')
 user_agent = os.getenv('USER_AGENT')
 
-# Initialize PRAW
 reddit = praw.Reddit(
     client_id=client_id,
     client_secret=client_secret,
@@ -20,9 +18,7 @@ reddit = praw.Reddit(
 @app.route('/')
 def home():
     subreddit = reddit.subreddit('memes')
-    # Get a list of hot submissions
-    submissions = list(subreddit.hot(limit=50))
-    # Select a random submission
+    submissions = list(subreddit.hot(limit=690))
     submission = random.choice(submissions)
     meme = {
         'title': submission.title,
