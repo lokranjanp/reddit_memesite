@@ -20,7 +20,7 @@ reddit = praw.Reddit(
 
 @app.route('/')
 def home():
-    subreddit = reddit.subreddit('memes')   # fetch subreddit
+    subreddit = reddit.subreddit('dankmemes')   # fetch subreddit
     submissions = list(subreddit.hot(limit=690))    # fetch memes
     submission = random.choice(submissions)     # choose random meme
     meme = {
