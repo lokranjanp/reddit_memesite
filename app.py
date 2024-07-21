@@ -2,6 +2,8 @@ from flask import Flask, render_template
 import praw
 import random
 import os
+import redis
+import json
 
 app = Flask(__name__)   # initialised new flask app
 
@@ -17,17 +19,31 @@ reddit = praw.Reddit(
     user_agent=user_agent
 )
 
+# Setup Redis connection
+redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379')
+r = redis.from_url(redis_url)
+
+
+def get_random_meme(subreddit_name):
+    cached_submissions = r.get(f'subreddit:{subreddit_name}')
+    if cached_submissions:
+        submissions = json.loads(cached_submissions)
+    else:
+        subreddit = reddit.subreddit(subreddit_name)  # fetch subreddit
+        submissions = [{
+            'title': submission.title,
+            'url': submission.url,
+            'permalink': submission.permalink
+        } for submission in subreddit.hot(limit=690)]  # fetch memes
+        r.setex(f'subreddit:{subreddit_name}', 300, json.dumps(submissions))  # Cache for 5 minutes
+
+    submission = random.choice(submissions)  # choose random meme
+    return submission
+
 
 @app.route('/')
 def home():
-    subreddit = reddit.subreddit('dankmemes')   # fetch subreddit
-    submissions = list(subreddit.hot(limit=690))    # fetch memes
-    submission = random.choice(submissions)     # choose random meme
-    meme = {
-        'title': submission.title,
-        'url': submission.url,
-        'permalink': submission.permalink
-    }
+    meme = get_random_meme('dankmemes')
     return render_template('index.html', meme=meme, countdown=30)
 
 
