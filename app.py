@@ -6,6 +6,8 @@ import redis
 import json
 
 app = Flask(__name__)   # initialised new flask app
+MAXMEMORY = "30mb"
+POLICY = 'allkeys-lru'
 
 # loading .env credentials
 client_id = os.getenv('CLIENT_ID')
@@ -20,11 +22,11 @@ reddit = praw.Reddit(
 )
 
 # Setup Redis connection
-redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379')
+redis_url = os.getenv('REDIS_URL')
 r = redis.from_url(redis_url)
 
-r.config_set('maxmemory', '30mb')
-r.config_set('maxmemory-policy', 'allkeys-lru')
+r.config_set('maxmemory', MAXMEMORY)
+r.config_set('maxmemory-policy', POLICY)
 
 
 def get_random_meme(subreddit_name):
