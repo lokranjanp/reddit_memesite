@@ -62,7 +62,8 @@ Hosted at : https://random-reddit-meme-dcd00e42e641.herokuapp.com/
 
 ## Deployment
 
-Will deploy soon
+Deployed in Heroku. 
+View website @ https://random-reddit-meme-dcd00e42e641.herokuapp.com/
 
 ## Acknowledgements
 

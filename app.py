@@ -23,6 +23,9 @@ reddit = praw.Reddit(
 redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379')
 r = redis.from_url(redis_url)
 
+r.config_set('maxmemory', '30mb')
+r.config_set('maxmemory-policy', 'allkeys-lru')
+
 
 def get_random_meme(subreddit_name):
     cached_submissions = r.get(f'subreddit:{subreddit_name}')
