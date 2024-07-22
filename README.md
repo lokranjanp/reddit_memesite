@@ -14,11 +14,11 @@ Hosted at : https://random-reddit-meme-dcd00e42e641.herokuapp.com/
 - Flask
 - PRAW (Python Reddit API Wrapper)
 - HTML/CSS
+- Redis NoSQL-Cache
 
 ## Prerequisites
 
-- Python 3.11 installed
-- GitHub account (optional, for deployment)
+- Python 3.11 
 - Flask
 
 ## Installation
@@ -58,7 +58,7 @@ Hosted at : https://random-reddit-meme-dcd00e42e641.herokuapp.com/
 
 - Upon visiting `http://localhost:5000`, the application will fetch and display a random meme from Reddit.
 - The meme will be automatically refreshed every 30 seconds.
-- Each time a new meme is displayed, the flipping counter for memes viewed increments by 1.
+
 
 ## Deployment
 
