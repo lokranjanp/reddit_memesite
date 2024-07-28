@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import praw
 import random
 import os
@@ -47,6 +47,12 @@ def get_random_meme(subreddit_name):
 def home():
     meme = get_random_meme('dankmemes')
     return render_template('index.html', meme=meme, countdown=30)
+
+
+@app.route('/new_meme')
+def new_meme():
+    meme = get_random_meme('dankmemes')
+    return jsonify(meme)
 
 
 if __name__ == '__main__':
