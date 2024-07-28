@@ -16,8 +16,22 @@
         </a>
         <div class="footer">
             <p>New meme in <span id="countdown">{{ countdown }}</span> seconds.</p>
-            <button class="btn" onclick="refreshPage()"><i class="animation"></i>NEW MEME RIGHT NOW!<i class="animation"></i>
-    </button>
+            <button class="btn" onclick="refreshPage()"><i class="animation"></i>CLICK FOR NEW MEME!<i class="animation"></i></button>
+        </div>
+    </div>
+
+    <div class="social-footer">
+        <h2>Connect with me</h2>
+        <div class="social-links">
+            <a href="https://github.com/lokranjanp" target="_blank">
+                <img src="{{ url_for('static', filename='github.png') }}" alt="GitHub" />
+            </a>
+            <a href="https://www.linkedin.com/in/lokranjan-p/" target="_blank">
+                <img src="{{ url_for('static', filename='linkedin.png') }}" alt="LinkedIn" />
+            </a>
+            <a href="https://www.instagram.com/loki_bruce" target="_blank">
+                <img src="{{ url_for('static', filename='instagram.png') }}" alt="Instagram" />
+            </a>
         </div>
     </div>
 

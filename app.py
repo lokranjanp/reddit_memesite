@@ -22,7 +22,7 @@ reddit = praw.Reddit(
 )
 
 # Setup Redis connection
-redis_url = os.getenv('REDISCLOUD_URL')
+redis_url = os.getenv('REDIS_URL')
 r = redis.from_url(redis_url)
 
 
