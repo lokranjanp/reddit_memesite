@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from apscheduler.schedulers.background import BackgroundScheduler
 import praw
 import random
 import os
@@ -24,6 +25,31 @@ reddit = praw.Reddit(
 # Setup Redis connection
 redis_url = os.getenv('REDIS_URL')
 r = redis.from_url(redis_url)
+
+top_subreddits = ['dankmemes', 'memes', 'wholesomememes', 'funny', 'nsfw']
+
+def fetch_and_cache_meme(subreddit_name):
+    cache_key = f'subreddit:{subreddit_name}'
+    subreddit = reddit.subreddit(subreddit_name)
+    submissions = list(subreddit.hot(limit=690))
+    memes = [
+        {
+            'title': submission.title,
+            'url': submission.url,
+            'permalink': submission.permalink
+        }
+        for submission in submissions
+    ]
+    r.setex(cache_key, 300, json.dumps(memes))  # Cache for 5 minutes
+
+def update_caches():
+    for subreddit in top_subreddits:
+        fetch_and_cache_meme(subreddit)
+
+# Scheduler setup
+scheduler = BackgroundScheduler()
+scheduler.add_job(update_caches, 'interval', minutes=5)
+scheduler.start()
 
 def get_random_meme(subreddit_name):
     cached_submissions = r.get(f'subreddit:{subreddit_name}')
