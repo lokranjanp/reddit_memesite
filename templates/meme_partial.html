@@ -1,0 +1,16 @@
+<div class="meme">
+    <div id="preloader" style="display: none;"></div>
+    <div class="memeTitleClass">
+        <h1 id="memeTitle">{{ meme.title }}</h1>
+    </div>
+    <div class="memeBodyClass">
+        <a href="https://reddit.com{{ meme.permalink }}" target="_blank">
+            <img src="{{ meme.url }}" alt="{{ meme.title }}">
+        </a>
+    </div>
+</div>
+
+<div class="counter">
+    <p>New meme in <span id="countdown">30</span> seconds.</p>
+    <button class="btn" onclick="fetchNewMeme()"><i class="animation"></i>CLICK FOR NEW MEME!<i class="animation"></i></button>
+</div>

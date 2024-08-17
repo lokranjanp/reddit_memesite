@@ -3,3 +3,4 @@ __pycache__
 pycache
 .DS_Store
 .idea
+.venv

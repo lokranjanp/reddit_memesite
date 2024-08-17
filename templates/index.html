@@ -9,16 +9,31 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>{{ meme.title }}</h1>
-        <a href="https://reddit.com{{ meme.permalink }}" target="_blank">
-            <img src="{{ meme.url }}" alt="{{ meme.title }}">
-        </a>
-        <div class="footer">
-            <p>New meme in <span id="countdown">{{ countdown }}</span> seconds.</p>
-            <button class="btn" onclick="refreshPage()"><i class="animation"></i>CLICK FOR NEW MEME!<i class="animation"></i></button>
-        </div>
+    <div id="preloader"></div>
+    <div class="navbar">
+        <h1 id="heading">Reddit - Meme Page</h1>
     </div>
+    <div class="container">
+        <div class="dropdown" id="categoryForm">
+            <ul class="menu-list">
+                <li><button type="button" name="category" value="dankmemes" class="btn-shared active">dankmemes</button></li>
+                <li><button type="button" name="category" value="crappyoffbrands" class="btn-shared">crappyoffbrands</button></li>
+                <li><button type="button" name="category" value="memes" class="btn-shared">memes</button></li>
+                <li><button type="button" name="category" value="im14andthisisdeep" class="btn-shared">im14andthisisdeep</button></li>
+                <li><button type="button" name="category" value="trippinthroughtime" class="btn-shared">trippinthroughtime</button></li>
+                <li><button type="button" name="category" value="4chan" class="btn-shared">4chan</button></li>
+                <li><button type="button" name="category" value="pewdiepiesubmissions" class="btn-shared">pewdiepiesubmissions</button></li>
+                <li><button type="button" name="category" value="Meanjokes" class="btn-shared">Meanjokes</button></li>
+                <li><button type="button" name="category" value="terriblefacebookmemes" class="btn-shared">terriblefacebookmemes</button></li>
+                <li><button type="button" name="category" value="nobodyasked" class="btn-shared">nobodyasked</button></li>
+                <li><button type="button" name="category" value="puns" class="btn-shared">puns</button></li>
+                <li><input type="text" name="category" placeholder="Enter custom category" class="btn-shared custom-category-input"></li>
+            </ul>
+        </div> 
+        <div id="meme-container">
+            {% include 'meme_partial.html' %}
+        </div>
+    </div>    
 
     <div class="social-footer">
         <h2>Connect with me</h2>
