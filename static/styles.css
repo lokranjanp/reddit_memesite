@@ -1,17 +1,15 @@
 :root {
-    --primary-color: #2B303A; 
-    --secondary-color: #92DCE5;
-    --color-3: #EEE5E9;
-    --color-4: #7C7C7C;
-    --sunny-yellow: #FFD700;
-    --coral-pink: #FF6F61;
-    --sky-blue: #87CEEB;
-    --lime-green: #3aa73a;
-    --white: #FFFFFF;
+    --primary-color: #E9ECE6; /* Light Background */
+    --secondary-color: #545B5A; /* Dark Text */
+    --accent-color-1: #AAB8B6; /* Soft Gray */
+    --accent-color-2: #BCCBC9; /* Light Gray */
+    --accent-color-3: #C0DFD9; /* Lighter Gray */
+    --color-6: #3A3335;
+    --color-7: #7a8483;
 }
 
 body {
-    background-color: var(--white);
+    background-color: var(--primary-color);
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -20,22 +18,56 @@ body {
 }
 
 .social-footer {
-    background-color: var(--lime-green);
+    padding-top: 0.1px;
+    background-color: var(--accent-color-1);
     text-align: center;
-    height: 10.8vh;
+    height: 20%;
+}
+
+.social-footer h2 {
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 450px;
 }
 
 .social-links a {
+    position: relative;
     display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    margin: 0px 5px;
 }
 
 .social-links img {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s, transform 0.3s;
 }
 
-.social-links img:hover {
+.first {
+    opacity: 1;
+}
+
+.second {
+    opacity: 0;
+}
+
+.social-links a:hover .first {
+    opacity: 0;
+    transform: scale(1.1);
+}
+
+.social-links a:hover .second {
+    opacity: 1;
     transform: scale(1.1);
 }
 
@@ -45,12 +77,25 @@ body {
 }
 
 .btn-shared {
-    width: auto;
+    width: 200px;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
-    background-color: var(--sky-blue);
-    color: white;
+    background-color: var(--accent-color-2);
+    color: var(--secondary-color);
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-shared-custom {
+    width: 200px;
+    padding: 10px 0px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--accent-color-2);
+    color: var(--secondary-color);
     font-size: 16px;
     text-align: center;
     cursor: pointer;
@@ -58,13 +103,16 @@ body {
 }
 
 .btn-shared:hover {
-    background-color: var(--lime-green);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
 }
 
 .btn-shared.active {
-    background-color: var(--sunny-yellow);
+    background-color: #7a8483;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
 }
 
 .btn-shared:focus {
@@ -72,8 +120,8 @@ body {
 }
 
 .navbar {
-    background-color: var(--coral-pink);
-    color: var(--white);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,12 +167,12 @@ body {
 }
 
 .container {
-    background-color: var(--white);
+    background-color: var(--accent-color-3);
     display: flex;
     justify-content: space-between;
     border-radius: 8px;
     width: 100%;
-    height: 72%;
+    height: 65%;
     text-align: center;
     margin-right: 80px;
     position: relative;
@@ -132,14 +180,13 @@ body {
 
 a {
     text-decoration: none;
-    color: #3498db;
+    color: var(--secondary-color);
 }
 
 .meme {
-    background-color: var(--white);
+    margin-right: 10px;
     width: 100%;
     max-width: 613px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -162,14 +209,14 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--sunny-yellow);
+    background: var(--secondary-color);
     min-width: 200px;
     border: 0;
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
     box-sizing: border-box;
     padding: 10px 20px;
-    color: #fff;
+    color: var(--primary-color);
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 1.2px;
@@ -180,10 +227,10 @@ a {
 }
 
 .btn:hover {
-    opacity: .95;
-    background-color: var(--coral-pink);
+    opacity: 1;
+    background-color: var(--accent-color-1);
+    transform: scale(1.05);
 }
-
 
 .counter {
     display: flex;
@@ -194,10 +241,11 @@ a {
 }
 
 .dropdown {
-    background-color: var(--sky-blue);
-    color: var(--white);
+    background-color: var(--color-6);
+    color: var(--secondary-color);
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: #3A3335;
     max-width: 240px;
     width: 15%;
     box-sizing: border-box;
@@ -211,6 +259,10 @@ a {
 
 .menu-list li {
     margin-bottom: 10px;
+}
+
+.menu-list button{
+    color: #000000;
 }
 
 .menu-list li:last-child {
