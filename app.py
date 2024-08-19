@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request
 import praw
 from dotenv import load_dotenv
+import time
 import random
 import os
 import redis
 import json
+
+seed = int(time.time()*1000) % 1000
+random.seed(time.time())
 
 app = Flask(__name__)   # Initialised new Flask app
 MAXMEMORY = "30mb"

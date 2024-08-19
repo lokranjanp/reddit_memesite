@@ -1,5 +1,5 @@
 import praw
-from random import randint
+import random
 import time
 import os
 import redis
@@ -40,13 +40,13 @@ def fetch_and_cache_meme(subreddit_name):
 
 def update_caches(top_subreddits):
     for subreddit in top_subreddits:
-        print(subreddit)
         fetch_and_cache_meme(subreddit)
-        time.sleep(randint(5, 10))
+        time.sleep(random.randint(5, 10))
 
 top_subreddits = ["memes", "dankmemes", "funny", "wholesome", "nobodyasked"]
 while True:
-    print("caching")
+    seed = int(time.time() * 1000) % 1000
+    random.seed(time.time())
     update_caches(top_subreddits)
-    time.sleep(250)
+    time.sleep(2)
 
