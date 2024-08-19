@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import praw
+from dotenv import load_dotenv
 import random
 import os
 import redis
@@ -8,6 +9,7 @@ import json
 app = Flask(__name__)   # Initialised new Flask app
 MAXMEMORY = "30mb"
 POLICY = 'allkeys-lru'
+load_dotenv()
 
 # Loading .env credentials
 client_id = os.getenv('CLIENT_ID')
@@ -54,5 +56,5 @@ def new_meme():
     meme = get_random_meme(category)
     return render_template('meme_partial.html', meme=meme, countdown=30)
 
-def main():
+if __name__ == "__main__":
     app.run(debug=True)
