@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
-from apscheduler.schedulers.background import BackgroundScheduler
 import praw
+import threading
+import time
 import random
 import os
 import redis
@@ -43,13 +44,21 @@ def fetch_and_cache_meme(subreddit_name):
     r.setex(cache_key, 300, json.dumps(memes))  # Cache for 5 minutes
 
 def update_caches():
+    threads = []
     for subreddit in top_subreddits:
-        fetch_and_cache_meme(subreddit)
+        thread = threading.Thread(target=fetch_and_cache_meme, args=(subreddit,))
+        threads.append(thread)
+        thread.start()
+    for thread in threads:
+        thread.join()
 
-# Scheduler setup
-scheduler = BackgroundScheduler()
-scheduler.add_job(update_caches, 'interval', minutes=5)
-scheduler.start()
+def schedule_cache_updates():
+    while True:
+        update_caches()
+        time.sleep(300)
+
+def start_scheduler():
+    threading.Thread(target=schedule_cache_updates, daemon=True).start()
 
 def get_random_meme(subreddit_name):
     cached_submissions = r.get(f'subreddit:{subreddit_name}')
@@ -79,5 +88,6 @@ def new_meme():
     meme = get_random_meme(category)
     return render_template('meme_partial.html', meme=meme, countdown=30)
 
-if __name__ == '__main__':
+def main():
+    start_scheduler()
     app.run(debug=True)
